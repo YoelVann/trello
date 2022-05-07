@@ -112,6 +112,7 @@ Trello.prototype.addBoard = function (name, description, organizationId, callbac
     if (organizationId !== null)
         query.idOrganization = organizationId;
 
+    console.log(makeRequest(rest.post, this.uri + '/1/boards/', {query: query}, callback));
     return makeRequest(rest.post, this.uri + '/1/boards/', {query: query}, callback);
 };
 
@@ -132,12 +133,14 @@ Trello.prototype.updateBoardPref = function (boardId, field, value, callback) {
 
 Trello.prototype.addCard = function (name, description, listId, callback) {
     var query = this.createQuery();
+    console.log(query)
     query.name = name;
     query.idList = listId;
-
+    // console.log("name: ",query.name);
+    // console.log("query:", query.idList);
     if (description !== null)
         query.desc = description;
-
+    
     return makeRequest(rest.post, this.uri + '/1/cards', {query: query}, callback);
 };
 
